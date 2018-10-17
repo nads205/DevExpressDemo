@@ -1,0 +1,19 @@
+﻿@using DevExpress.FrontEnd.Models
+@Html.DevExpress().ComboBox(settingsCb => {
+                                              settingsCb.Name = "comboBoxCb123";
+                                              settingsCb.Width = 285;
+                                              settingsCb.Properties.DropDownWidth = 350;
+                                              settingsCb.Properties.DropDownStyle = DropDownStyle.DropDown;
+                                              settingsCb.CallbackRouteValues = new { Controller = "ComboBoxTest", Action = "LargeDataComboBoxPartial" };
+                                              settingsCb.Properties.CallbackPageSize = 15;
+                                              settingsCb.Properties.TextField = "Shelfmark";
+                                              settingsCb.Properties.TextFormatString = "{0}";
+                                              settingsCb.Properties.ValueField = "ShelfmarkId";
+                                              settingsCb.Properties.ValueType = typeof(int);
+                                              settingsCb.Properties.FilterMinLength = 2;
+                                              settingsCb.Properties.Columns.Add("Shelfmark", "Shelfmark", 120);
+                                              settingsCb.Properties.Columns.Add("GeneralNotes", "General Notes", 300);
+                                              settingsCb.Properties.ClientSideEvents.BeginCallback = "OnStartCallback";
+                                              settingsCb.Properties.ClientSideEvents.EndCallback = "OnEndCallback";
+}).BindList(LargeDatabaseDataProvider.GetShelfmarkRange, LargeDatabaseDataProvider.GetShelfmarkByID).GetHtml()
+

@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <row>
+        <English>Appendix</English>
+        <Arabic>ملحق</Arabic>
+    </row>
+    <row>
+        <English>Archival file</English>
+        <Arabic>ملف أرشيفي</Arabic>
+    </row>
+    <row>
+        <English>Archival item</English>
+        <Arabic>مادة أرشيفية</Arabic>
+    </row>
+    <row>
+        <English>Audio</English>
+        <Arabic>مادة صوتية</Arabic>
+    </row>
+    <row>
+        <English>Certificate</English>
+        <Arabic>شهادة</Arabic>
+    </row>
+    <row>
+        <English>Diagram</English>
+        <Arabic>رسم بياني</Arabic>
+    </row>
+    <row>
+        <English>Diary</English>
+        <Arabic>مذكرات</Arabic>
+    </row>
+    <row>
+        <English>Drawing</English>
+        <Arabic>رسم</Arabic>
+    </row>
+    <row>
+        <English>Illustration</English>
+        <Arabic>رسم توضيحي</Arabic>
+    </row>
+    <row>
+        <English>Index</English>
+        <Arabic>فهرس</Arabic>
+    </row>
+    <row>
+        <English>Journal</English>
+        <Arabic>دورية</Arabic>
+    </row>
+    <row>
+        <English>Journal article</English>
+        <Arabic>مقال </Arabic>
+    </row>
+    <row>
+        <English>Letter</English>
+        <Arabic>رسالة</Arabic>
+    </row>
+    <row>
+        <English>Letter book</English>
+        <Arabic>مجلد مراسلات</Arabic>
+    </row>
+    <row>
+        <English>List</English>
+        <Arabic>قائمة</Arabic>
+    </row>
+    <row>
+        <English>Manuscript</English>
+        <Arabic>مخطوطة</Arabic>
+    </row>
+    <row>
+        <English>Manuscript item</English>
+        <Arabic>مادة من مخطوطة</Arabic>
+    </row>
+    <row>
+        <English>Map</English>
+        <Arabic>خريطة</Arabic>
+    </row>
+    <row>
+        <English>Newspaper article</English>
+        <Arabic>مقال صحفي</Arabic>
+    </row>
+    <row>
+        <English>Newspaper clipping</English>
+        <Arabic>قصاصة صحفية</Arabic>
+    </row>
+    <row>
+        <English>Note</English>
+        <Arabic>مذكرة</Arabic>
+    </row>
+    <row>
+        <English>Painting</English>
+        <Arabic>لوحة</Arabic>
+    </row>
+    <row>
+        <English>Passport</English>
+        <Arabic>جواز سفر</Arabic>
+    </row>
+    <row>
+        <English>Photograph</English>
+        <Arabic>صورة فوتوغرافية</Arabic>
+    </row>
+    <row>
+        <English>Plan</English>
+        <Arabic>رسم تخطيطي</Arabic>
+    </row>
+    <row>
+        <English>Print</English>
+        <Arabic>مطبوعة</Arabic>
+    </row>
+    <row>
+        <English>Register</English>
+        <Arabic>دفتر تسجيل</Arabic>
+    </row>
+    <row>
+        <English>Report</English>
+        <Arabic>تقرير</Arabic>
+    </row>
+    <row>
+        <English>Statistical table</English>
+        <Arabic>جدول إحصاء</Arabic>
+    </row>
+    <row>
+        <English>Table of contents</English>
+        <Arabic>فهرس محتويات</Arabic>
+    </row>
+    <row>
+        <English>Title page</English>
+        <Arabic>صفحة عنوان</Arabic>
+    </row>
+    <row>
+        <English>Treaty</English>
+        <Arabic>اتفاقية</Arabic>
+    </row>
+    <row>
+        <English>Video</English>
+        <Arabic>مادة فيديو</Arabic>
+    </row>
+    <row>
+        <English>Volume</English>
+        <Arabic>مجلد</Arabic>
+    </row>
+</root>

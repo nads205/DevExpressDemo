@@ -1,0 +1,32 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    Page.dbName = HttpContext.Current.Application["dbName"];
+    Page.siteName = HttpContext.Current.Application["siteName"];
+    
+    if (HttpContext.Current.Request.Url.Host.ToLower() == "qatar.tools.ad.bl.uk")
+    {
+        Page.Description = "Production";
+        Page.Title = "Qatar | Tools (Prod)";
+        Page.StylesheetUrl = "/Content/skins/skin-black.min.css";
+        Page.Skin = "skin-black";
+        Page.ShowBetaMessage = false;
+    }
+    else if (HttpContext.Current.Request.Url.Host.ToLower() == "qatar.uat.tools.ad.bl.uk")
+    {
+        Page.Description = "UAT";
+        Page.Title = "Qatar | Tools (UAT)";
+        Page.StylesheetUrl = "/Content/skins/skin-yellow.min.css";
+        Page.Skin = "skin-yellow";
+        Page.ShowBetaMessage = true;
+    }
+    else
+    {
+        Page.Description = "Development";
+        Page.Title = "Qatar | Tools (Dev)";
+        Page.StylesheetUrl = "/Content/skins/skin-red.min.css";
+        Page.Skin = "skin-red";
+        Page.ShowBetaMessage = true;
+    }
+
+}

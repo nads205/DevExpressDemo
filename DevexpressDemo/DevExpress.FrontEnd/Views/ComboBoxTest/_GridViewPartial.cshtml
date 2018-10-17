@@ -1,0 +1,207 @@
+@using DevExpress.FrontEnd.Models
+@{
+    var grid = Html.DevExpress().GridView(settings =>
+    {
+        settings.Name = "GridView";
+        settings.CallbackRouteValues = new
+        {
+            Controller = "ComboBoxTest",
+            Action = "GridViewPartial"
+        };
+
+        settings.SettingsEditing.AddNewRowRouteValues = new { Controller = "GridTest", Action = "GridViewPartialAddNew" };
+        settings.SettingsEditing.UpdateRowRouteValues = new { Controller = "GridTest", Action = "GridViewPartialUpdate" };
+        settings.SettingsEditing.DeleteRowRouteValues = new { Controller = "GridTest", Action = "GridViewPartialDelete" };
+        settings.SettingsEditing.Mode = GridViewEditingMode.EditFormAndDisplayRow;
+        settings.SettingsBehavior.ConfirmDelete = true;
+
+        settings.CommandColumn.Visible = true;
+        settings.CommandColumn.ShowNewButton = true;
+        settings.CommandColumn.ShowDeleteButton = true;
+        settings.CommandColumn.ShowEditButton = true;
+
+        settings.KeyFieldName = "Id";
+
+        settings.SettingsPager.Visible = true;
+        settings.Settings.ShowGroupPanel = true;
+        settings.Settings.ShowFilterRow = true;
+        settings.SettingsBehavior.AllowSelectByRowClick = true;
+
+        settings.SettingsPager.PageSize = 10;
+
+        settings.SettingsAdaptivity.AdaptivityMode = GridViewAdaptivityMode.Off;
+        settings.SettingsAdaptivity.AdaptiveColumnPosition = GridViewAdaptiveColumnPosition.Right;
+        settings.SettingsAdaptivity.AdaptiveDetailColumnCount = 1;
+        settings.SettingsAdaptivity.AllowOnlyOneAdaptiveDetailExpanded = false;
+        settings.SettingsAdaptivity.HideDataCellsAtWindowInnerWidth = 0;
+
+        settings.ClientSideEvents.Init = "function(s, e) { s.PerformCallback(); }";
+        settings.ClientSideEvents.BeginCallback = "function(s, e) { OnStartCallback(s, e); }";
+        settings.ClientSideEvents.EndCallback = "function(s, e) { OnEndCallback(s, e); }";
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "ShelfmarkId";
+            column.Width = 50;
+        });
+
+        //settings.CustomUnboundColumnData = (s, e) => {
+        //    if (e.Column.FieldName == "Shelfmark") {
+        //        string shelfmark = (e.GetListSourceFieldValue("Shelfmark")).ToString();
+        //        e.Value = shelfmark;
+        //    };
+        //};
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Unbound";
+            column.UnboundType = DevExpress.Data.UnboundColumnType.String;
+            column.Caption = "Shelfmark";
+            column.SetDataItemTemplateContent(c =>
+            {
+                var shelfmarkId = (int)DataBinder.Eval(c.DataItem, "ShelfmarkId");
+                var shelfmark = LargeDatabaseDataProvider.GetShelfmarkByID(shelfmarkId);
+                ViewContext.Writer.Write(shelfmark);
+
+                //Response.Write(item); //this doesn't work...
+                //Html.RenderPartial("LargeDataComboBoxPartial");
+            });
+            column.SetEditItemTemplateContent(e =>
+            {
+                var shelfmarkId = (int)DataBinder.Eval(e.DataItem, "ShelfmarkId");
+                var shelfmark = LargeDatabaseDataProvider.GetShelfmarkByID(shelfmarkId);
+                Html.DevExpress().ComboBox(settingsCb =>
+                {
+                    var v = Guid.NewGuid();
+                    settingsCb.Name = "comboBoxCb";
+                    settingsCb.Width = 285;
+                    settingsCb.Properties.DropDownWidth = 350;
+                    settingsCb.Properties.DropDownStyle = DropDownStyle.DropDown;
+                    settingsCb.CallbackRouteValues = new {Controller = "ComboBoxTest", Action = "LargeDataComboBoxPartial"};
+                    settingsCb.Properties.CallbackPageSize = 15;
+                    settingsCb.Properties.DataSource = LargeDatabaseDataProvider.GetShelfmarks();
+                    settingsCb.Properties.TextField = "Shelfmark";
+                    settingsCb.Properties.TextFormatString = "{0}";
+                    settingsCb.Properties.ValueField = "ShelfmarkId";                    
+                    settingsCb.Properties.ValueType = typeof(int);
+                    settingsCb.Properties.FilterMinLength = 2;
+                    settingsCb.Properties.Columns.Add("ShelfmarkId", "Id", 100);
+                    settingsCb.Properties.Columns.Add("Shelfmark", "Shelfmark", 120);
+                    settingsCb.Properties.Columns.Add("GeneralNotes", "General Notes", 300);
+                   // settingsCb.Properties.ClientSideEvents.BeginCallback = "OnStartCallback";
+                   // settingsCb.Properties.ClientSideEvents.EndCallback = "OnEndCallback";                    
+                }).BindList(LargeDatabaseDataProvider.GetShelfmarkRange, LargeDatabaseDataProvider.GetShelfmarkByID).Render();
+
+            });
+            //column.SetDataItemTemplateContent(t =>
+            //{
+            //    Html.DevExpress().Button(b =>
+            //    {
+            //        var v = Guid.NewGuid();
+            //        b.Name = "Button_" + v;// DataBinder.Eval(t.DataItem, "ShelfmarkId");
+            //        b.Text = "Test_" + v;
+            //        b.ClientSideEvents.Click = string.Format(@"function(s, e) {{ alert({0}); }}", t.KeyValue);
+            //    }).GetHtml();
+            //});
+            column.Visible = false;
+        });
+
+
+
+        //added standard shelfmark column   - now to make it editable!
+
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Shelfmark";
+            column.Caption = "Shelfmark";        
+            column.SetEditItemTemplateContent(t =>
+            {
+                //   var value = t.Grid.IsNewRowEditing ? true : DataBinder.Eval(t.DataItem, "ShelfmarkId");
+                Html.DevExpress().ComboBox(settingsCb =>
+                {
+
+                    var v = Guid.NewGuid();
+                    settingsCb.Name = "Shelfmark";
+                    settingsCb.Width = 285;
+                    settingsCb.Properties.DropDownWidth = 350;
+                    settingsCb.Properties.DropDownStyle = DropDownStyle.DropDown;
+                    settingsCb.CallbackRouteValues = new { Controller = "ComboBoxTest", Action = "LargeDataComboBoxPartial" };
+                    settingsCb.Properties.CallbackPageSize = 15;
+                    settingsCb.Properties.TextField = "Shelfmark";
+                    settingsCb.Properties.TextFormatString = "{0}";
+                    settingsCb.Properties.ValueField = "ShelfmarkId";
+                    settingsCb.SelectedIndex = (int)DataBinder.Eval(t.DataItem, "ShelfmarkId");
+                    settingsCb.Properties.ValueType = typeof(int);
+                    settingsCb.Properties.FilterMinLength = 2;
+                    settingsCb.Properties.Columns.Add("ShelfmarkId", "Id", 100);
+                    settingsCb.Properties.Columns.Add("Shelfmark", "Shelfmark", 120);
+                    settingsCb.Properties.Columns.Add("GeneralNotes", "General Notes", 300);
+                    settingsCb.Properties.ClientSideEvents.BeginCallback = "OnStartCallback";
+                    settingsCb.Properties.ClientSideEvents.EndCallback = "OnEndCallback";
+                }).BindList(LargeDatabaseDataProvider.GetShelfmarkRange, LargeDatabaseDataProvider.GetShelfmarkByID).GetHtml();
+            });
+        });
+
+        settings.Columns.Add("Childshelfmark").Width = 250;
+        settings.Columns.Add("AutogenCz");
+        settings.Columns.Add("CopyrightZoneEnglish").Width = 300;
+        settings.Columns.Add("CopyrightZoneArabic").Width = 300;
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Unbound";
+            column.UnboundType = DevExpress.Data.UnboundColumnType.String;
+            column.Caption = "Rights Expression";
+            column.SetDataItemTemplateContent(c =>
+            {
+                var rightExpressionId = (int)DataBinder.Eval(c.DataItem, "RightsExpressionId");
+                var rightsExpression = LargeDatabaseDataProvider.GetRightsExpressionById(rightExpressionId);
+                ViewContext.Writer.Write(rightsExpression);
+            });
+            column.Visible = false;
+        });
+        settings.Columns.Add(column =>
+        {
+            column.FieldName = "Unbound";
+            column.UnboundType = DevExpress.Data.UnboundColumnType.String;
+            column.Caption = "CRZ Status";
+            column.SetDataItemTemplateContent(c =>
+            {
+                var crzId = (int)DataBinder.Eval(c.DataItem, "RightsExpressionId");
+                var crzStatus = LargeDatabaseDataProvider.GetCrzById(crzId);
+                ViewContext.Writer.Write(crzStatus);
+            });
+            column.Visible = false;
+        });
+        //settings.Columns.Add("RightsExpression").Width = 200;
+        //settings.Columns.Add("CopyrightZoneStatus").Width = 200;
+        //settings.Columns.Add("DlsBlurTerm").Width = 200;
+        //settings.Columns.Add("DlsRightsIn").Width = 200;
+        //settings.Columns.Add("RcCategory").Width = 200;
+        //settings.Columns.Add("Comments").Width = 200;
+        //settings.Columns.Add("TitleOrDescription").Width = 200;
+        //settings.Columns.Add("DateOfCreation").Width = 200;
+        //settings.Columns.Add("InPermissionLetter").Width = 200;
+        //settings.Columns.Add("Creatorcategory").Width = 200;
+        //settings.Columns.Add("Nationality").Width = 200;
+        //settings.Columns.Add("OnBehalfofCategory").Width = 200;
+        //settings.Columns.Add("OnBehalfOfNationality").Width = 200;
+        //settings.Columns.Add("RightsHolder").Width = 200;
+        //settings.Columns.Add("RightsholderName").Width = 200;
+        //settings.Columns.Add("Created").Width = 200;
+        //settings.Columns.Add("CreatedBy").Width = 200;
+        //settings.Columns.Add("Modified").Width = 200;
+        //settings.Columns.Add("ModifiedBy").Width = 200;
+        //settings.Columns.Add("OnBehalfOf").Width = 200;
+
+    });
+
+    if (ViewData["EditError"] != null)
+    {
+        grid.SetEditErrorText((string)ViewData["EditError"]);
+    }
+
+    @grid.BindToEF(string.Empty,string.Empty, (s, e) =>
+    {
+        e.QueryableSource = LargeDatabaseDataProvider.CopyrightZonesView;
+    }).GetHtml();
+    }

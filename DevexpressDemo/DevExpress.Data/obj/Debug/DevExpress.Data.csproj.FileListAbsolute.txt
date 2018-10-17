@@ -1,0 +1,12 @@
+C:\Code_GitHub\DevExpressDemo\DevexpressDemo\DevExpress.Data\obj\Debug\DevExpress.Data.csprojAssemblyReference.cache
+C:\Code_GitHub\DevExpressDemo\DevexpressDemo\DevExpress.Data\obj\Debug\DevExpress.Data.csproj.CoreCompileInputs.cache
+C:\Code_GitHub\DevExpressDemo\DevexpressDemo\DevExpress.Data\bin\Debug\DevExpress.Data.dll.config
+C:\Code_GitHub\DevExpressDemo\DevexpressDemo\DevExpress.Data\bin\Debug\DevExpress.Data.dll
+C:\Code_GitHub\DevExpressDemo\DevexpressDemo\DevExpress.Data\bin\Debug\DevExpress.Data.pdb
+C:\Code_GitHub\DevExpressDemo\DevexpressDemo\DevExpress.Data\bin\Debug\EntityFramework.dll
+C:\Code_GitHub\DevExpressDemo\DevexpressDemo\DevExpress.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Code_GitHub\DevExpressDemo\DevexpressDemo\DevExpress.Data\bin\Debug\EntityFramework.xml
+C:\Code_GitHub\DevExpressDemo\DevexpressDemo\DevExpress.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Code_GitHub\DevExpressDemo\DevexpressDemo\DevExpress.Data\obj\Debug\DevExpress.Data.csproj.CopyComplete
+C:\Code_GitHub\DevExpressDemo\DevexpressDemo\DevExpress.Data\obj\Debug\DevExpress.Data.dll
+C:\Code_GitHub\DevExpressDemo\DevexpressDemo\DevExpress.Data\obj\Debug\DevExpress.Data.pdb
